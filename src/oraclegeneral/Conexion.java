@@ -1,3 +1,4 @@
+
 package oraclegeneral;
 
 import java.io.BufferedReader;
@@ -30,39 +31,37 @@ public class Conexion {
     private static String query = null;
     private static Conexion INSTANCE;
 
-   /**
-    * Constructor donde creamos la conexion a base de datos 
-    */
-    
+    /**
+     * Constructor donde creamos la conexion a base de datos
+     */
     private Conexion() {
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
             con = DriverManager.getConnection(url, usuario, contrasena);
-            
+
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-    
+
     /**
      * Método que obtiene la instancia de la conexion en la base de datos
      * @return INSTANCE instancia que hemos creado
      */
-    public static Conexion getInstance(){
-        if(INSTANCE == null){
+    public static Conexion getInstance() {
+        if (INSTANCE == null) {
             INSTANCE = new Conexion();
         }
         return INSTANCE;
-    
     }
-    
+
     /**
      * Método que obtiene la conexion a la base de datos
-     * @return 
-     */    
-    public Connection getCon(){
+     * @return
+     */
+    public Connection getCon() {
         return con;
     }
 
@@ -82,7 +81,6 @@ public class Conexion {
         } catch (SQLException ex) {
             return false;
         }
-
     }
 
     /**
@@ -106,7 +104,7 @@ public class Conexion {
      */
     public static Boolean creacionUsuario() {
         JOptionPane.showMessageDialog(null, "Lo sentimos es la primera vez que entrara al sistema.\n"
-                + "Pongase en contacto con su DBA para que ingrese la contraseña del usuario 2 \"System\" ...");
+                + "Pongase en contacto con su DBA para que ingrese la contraseña del usuario 1 \"System\" ...");
         File file = new File("CrearUsuario.txt");
         usuario = "system";
         contrasena = JOptionPane.showInputDialog("Introduzca la contraseña del usuario system");
@@ -130,7 +128,6 @@ public class Conexion {
             return false;
         }
         return true;
-
     }
 
     /**
@@ -160,7 +157,5 @@ public class Conexion {
             return false;
         }
         return true;
-
     }
-
 }
